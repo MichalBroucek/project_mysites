@@ -1,0 +1,71 @@
+
+{% extends "middle_content.html" %}
+
+
+{% block maincontent %}
+
+
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'news/news_style.css' %}" />
+
+	<br/>
+        <font size="4px">
+	  << &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	  Seznam clanku &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	  Posledni clanek &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	  Pocet clanku &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	  >>
+	</font>
+	<br/><br/>
+
+{# for cyklus pres list clanku #}
+
+<div id="jednotlive_novinky" style="position: relative; float: down"> 
+
+	<!-- Ramecek kolem jedne novinky -->
+        <div id="new_item" style="position: relative; border: 1px solid gray;">
+
+	  <!-- Mezera leva+prava textu od ramecku -->
+	  <div id="left_space" style="position: relative; left: 1%; width: 98%;">
+
+
+		<h1>Treba nadpis</h1>
+		
+		<p>
+		OBR <br/>
+		
+		Tady jsou nejzajimavejsi stranky na svete ... <br/> 
+		
+		OBR <br/>
+		
+		Tady jsou nejzajimavejsi stranky na svete ... <br/> 
+		
+		OBR <br/>
+		
+		Tady jsou nejzajimavejsi stranky na svete ... <br/> 
+		
+		OBR <br/>
+		
+		Tady jsou nejzajimavejsi stranky na svete ... <br/>
+		
+		OBR <br/>
+		
+		</p>
+		
+
+	  </div> <!-- Mezera -->
+
+        </div> <!-- Ramecek -->
+
+	<br/><br/>
+
+</div> <!-- Jednotlive novinky -->	
+
+{# endfor #}
+
+{% endblock %}
+
+
+{% block rightsidebar %}
+	<p> Historie clanku </p>
+{% endblock %}

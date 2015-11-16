@@ -1,0 +1,40 @@
+
+
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}news/news.css" />
+
+<h2>All News</h2>
+
+<h5>Number of all news: {{ news_count }}</h5>
+
+{% if news_list %}
+    {% for new in news_list %}
+        <h4>Title: {{ new.title }}</h4>
+        <h5>Date: {{ new.date }}</h5>
+        {{ new.text }} 
+        </br></br>
+        <!-- Display links if they are available -->
+        {% if new.link1 %}
+            <a href="http://{{ new.link1 }}">{{ new.link1_name }}</a> </br> 
+        {% endif  %}
+        {% if new.link2 %}
+            <a href="http://{{ new.link2 }}">{{ new.link2_name }}</a> </br>
+        {% endif  %}
+        {% if new.link3 %}
+            {{ new.link3 }} </br>
+        {% endif  %}
+        {% if new.link4 %}
+            {{ new.link4 }} </br>
+        {% endif  %}
+        <!-- Display pictures if they are available -->
+	{% if new.image1 %}
+            <img border="0" alt="" src="{{ new.image1.url }}" width="200" />
+        {% endif %}
+        {% if new.image2 %}
+            <img border="0" alt="" src="{{ new.image2.url }}" width="200" />
+        {% endif %}
+        </br></br></br></br>
+    {% endfor %}
+{% else %}
+    <p>Žádné novinky nejsou k dispozici.</p>
+{% endif %}
+

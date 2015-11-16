@@ -1,0 +1,76 @@
+
+{% extends "messages/messages.html" %}
+
+{% block maincontent %}
+    <h2>Vytvoř a odešli nový vzkaz</h2>
+    <br/>
+    {% if error_message %}
+
+        {# Formular se nacita znovu - protoze nebyly vyplneny vsechny povinne polozky, nacitame hodnoty jiz jednou zadane uzivatelem #} 
+        <p><strong><font color=red>{{ error_message }}</font></strong></p>
+
+        {# Zobrazit jiz pred-vyplneny formular! - mozna by stacila jedna definice pro oba #} 
+        <form action="{% url 'messages:receive_message' %}" method="post">
+        {% csrf_token %}
+
+	    {# Test CSS pro form input #}
+            <style>
+            <!--
+            input {background-color: #000000; color: #FFFFFF; font-size: 12pt}
+            -->
+            </style>
+
+            <label for="title">Nadpis:&nbsp;</label>
+            <input type="text" maxlength="80" size="50" name="title" id="title" value="{{ title_value }}" /> <br/><br/>
+            <label for="author">Autor:&nbsp;&nbsp;</label>
+            <input type="text" maxlength="80" size="50" name="author" id="author" value="{{ author_value }}" /> <br/><br/>
+            <label for="mail">Email:&nbsp;&nbsp;</label>
+            <input type="text" maxlength="120" size="50" name="mail" id="mail" value="{{ mail_value }}" /> <br/><br/><br/>
+            <label for="title">Text:&nbsp;&nbsp;</label> <br/>
+            <textarea cols="100" rows="6" name="text" id="text" maxlength="1400" style="background-color: #000000; color: #FFFFFF; font-size: 10pt">{{ text_value }}</textarea> <br/><br/>
+
+            <input type="submit" value="Odeslat" />
+        </form>
+ 
+    {% else %}
+
+        <form action="{% url 'messages:receive_message' %}" method="post">
+        {% csrf_token %}
+
+	    {# Test CSS pro form input #}
+            <style>
+            <!--
+            input {background-color: #000000; color: #FFFFFF; font-size: 12pt}
+            -->
+            </style>
+
+            <label for="title">Nadpis:&nbsp;</label>
+            <input type="text" maxlength="80" size="50" name="title" id="title" /> <br/><br/>
+            <label for="author">Autor:&nbsp;&nbsp;</label>
+            <input type="text" maxlength="80" size="50" name="author" id="author" value="" /> <br/><br/>
+            <label for="mail">Email:&nbsp;&nbsp;</label>
+            <input type="text" maxlength="120" size="50" name="mail" id="mail" value="" /> <br/><br/><br/>
+            <label for="title">Text:&nbsp;&nbsp;</label> <br/>
+            <textarea cols="100" rows="6" name="text" id="text" maxlength="1400" style="background-color: #000000; color: #FFFFFF; font-size: 10pt"></textarea> <br/><br/>
+
+            <input type="submit" value="  Odeslat formulář  " />
+        </form>
+
+    {% endif %}
+
+{% endblock %}
+
+
+{% block rightsidebar %}
+    <div id="rightPanelContent" style="position: absolute; left: 5%; top: 50px">
+        <h3>Historie: </h3>
+
+        {% for message in message_history %}
+            {{ message.date }} <br/>
+            <font style="color: gray">{{ message.title }}</font>
+            <br/><br/>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+

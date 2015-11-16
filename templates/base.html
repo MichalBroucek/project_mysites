@@ -1,0 +1,88 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"> 
+
+<html>
+<head>
+<!-- <META HTTP-EQUIV="Content-Type" content="text/html; charset=windows-1250"> -->
+<META HTTP-EQUIV="Content-Type" content="text/html; charset=ISO 8859-2"> 
+
+ <title>Brouk personal info</title><!doctype HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"> 
+
+ <META NAME="description" CONTENT="Personal pages about climbing traveling, actual issues and different technical projects.">
+ <META NAME="keywords" CONTENT="Michal Broucek, traveling, climbing, Broucek personal projects, SW development, Michal Brouček, cestování, lezení, Brouček vlastní projekty, SW vývoj">
+ <META NAME="author" CONTENT="Michal Broucek">
+
+ {% load staticfiles %}
+ <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}" />
+
+</head>
+
+<!-- Page itself -->
+<body>
+<div id="wrappage" class="wrappage">
+
+  <!-- Head line - pictures and links -->
+  <div id="header" class="header" style="position: relative; height: 140px; width: 1280px;  top: 0%; left: 0%; z-index: 1;">    
+    <img src="/media/images/header_1280_01.jpg" style="position: relative; top: 0px; left: 0px; width: 1280px; z-index: -1;">    
+    {% block header %}	
+      <div id="mytitle" style="position: absolute; top: 20px; left: 80px; z-index: 1;">
+        <font style="font-size: small" color="gray">Osobní info stránka:</font>
+        <font style="font_size: 22px;" color="gray"><b>Michal Brouček</b></font>
+      </div>
+    {% endblock %}
+  </div>
+
+  <!-- Odkazy v liste pod hlavickou -->
+  <div id="linksidebar" class="linksidebar" style="position: relative; height: 20px; width: 1280px; top: 0px; left: 0%; z-index: 1; font-size: small">
+    {% block linksidebar %}
+      <div id="link1" style="position: absolute; left: 1%; top: 0%">
+        <a href="{% url 'news:info' %}">Info</a> <!-- Info proc tyhle stranky ... pokus s Djangem -->
+      </div>
+      <div id="link1" style="position: absolute; left: 15%; top: 0%">
+        <a href="{% url 'underConstruction' %}">Oblíbené odkazy</a>
+      </div>
+      <div id="link1" style="position: absolute; left: 30%; top: 0%">
+        <a href="http://horooddil.zcu.cz">HO USK Plzeň</a>
+      </div>
+      <div id="link1" style="position: absolute; left: 45%; top: 0%">
+        <a href="http://www.hokn.cz">HOKN</a>
+      </div>
+      <div id="link1" style="position: absolute; left: 60%; top: 0%">
+        <a href="http://rocknwall.cz">R&W Plzeň</a>
+      </div>
+      <div id="link1" style="position: absolute; left: 75%; top: 0%">
+        <a href="http://www.honzatrava.cz">Tráva</a>
+      </div>
+      <div id="link1" style="position: absolute; right: 1%; top: 0%">
+        <a href="{% url 'news:kontakt' %}">Kontakt</a>
+      </div>
+    {% endblock %}
+  </div>
+
+
+  <!-- Left sidebar center content and rightsidebar in main section-->
+  <div id="centercontent" class="centercontent" style="position: relative; top: 0px; left: 0px; width: 1280px; height: 80%; overflow: auto;">
+    {% block centercontent %}
+      <p>CENTER CONTENT</p>
+    {% endblock %}
+  </div>
+  
+  <!-- Footer -->
+  <div id="footer" class="footer" style="position: relative; height: 15px; width: 1280px; left: 0%; font-size: small">
+    {% block footer %}
+      <div id="footerleft" style="position: absolute; left: 1%; top: 0%">
+        <a href="{% url 'news:info' %}">Info</a> stránky na zkoušku
+      </div>
+      <div id="footercenter" style="position: absolute; left: 45%; top: 0%">
+        @autor: <a href="mailto: michalbroucek@seznam.cz?subject=Vzkaz z: mbrouk.cz">Michal Brouček</a>
+      </div>
+      <div id="footright" style="position: absolute; right: 1%; top: 0%">
+	    Web framework: <a href="">Django</a>
+      </div>
+    {% endblock %}
+  </div>
+
+</div>
+</body>
+
+</html>
+

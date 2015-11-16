@@ -1,0 +1,46 @@
+
+{% extends "middle_content.html" %}
+
+
+{% block maincontent %}
+
+
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'news/news_style.css' %}" />
+
+<br/>
+
+        <font size="2px"><a href="{% url 'news:news' preview_start_id %}" title="10 předchozích novinek"><<</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+	<font size="4px">Aktuality</font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font size="4px">Počet záznamů: {{ news_count }}</font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2px">Pro starší záznamy odrolujte dolu (po kliknutí myši do protřední sekce).</font>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2px"><a href="{% url 'news:news' next_start_id %}" title="10 následujících novinek">>></a></font>
+        
+<br/>
+<br/>
+
+
+  <h2>Nejzabavnejsi clanky na svete</h2>
+
+{% endblock %}
+
+
+{% block rightsidebar %}
+  <br/>
+  <div id="PictureOfDay" style="position: absolute; left: 5%; top: 5%;">
+    Fotka týdne, heslo týdne ... 
+    <br/><br/>
+
+    {% if pictureOfWeek %}
+      <img border="0" alt="" src="{{ pictureOfWeek.image.url }}" width="180px" style="border: 2px solid white; box-shadow: 0 0 2px rgba(0, 0, 0, 0.7);">
+      <br/>
+      <a href="{% url 'news:picture_of_week_detail' pictureOfWeek.id %}">{{ pictureOfWeek.title }}</a>
+      <div id="hesloTydne" style="position: absolute; left: 0px; top: 450px">      
+        <font size="2px">Heslo týdne:</font>
+        <br>
+        {{ pictureOfWeek.text }}       
+      </div>
+    {% else %}
+      Žádný záznam pro foto týdne.
+    {% endif%}
+
+  </div>
+{% endblock %}

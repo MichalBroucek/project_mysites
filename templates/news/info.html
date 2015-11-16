@@ -1,0 +1,37 @@
+
+{% extends "news/news.html" %}
+
+
+{% block maincontent %}
+
+  <div id="maincontenttext" class="maincontenttext" style="position: absolute; top: 1%; left: 3%; hight: 100%; width: 90%">
+
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'news/style.css' %}" />
+
+    <h2>O čem to tu je ?</h2>
+    Stránky vznikly ze dvou hlavních důvodů:
+    <ol>
+      <li>
+        Mít možnost dát vědět, kde se zrovna nacházime na našich cestách a prezentovat nějakou tu fotku nebo postřeh na který bych brzo zapoměl.
+      </li>
+      <li>
+        Otestovat a naučit se práci s webovým frameworkem Django
+      </li>
+      <li>
+        Zabavit se před odjezdem do Indie a na Nový Zéland :-)
+      </li>
+    </ol>
+
+    <h3>Stránky vznikly během pár večerů a zatím NEJSOU dodělané, optimalizované a odladěné. Pro začátek jsou v provozu pouze novinky a foto týdne. Další části přibydou snad později, pokud na ně bude čas (snad ano ...).</h3>
+
+    <br/><br/><br/>
+
+    <h4>Připomínky a kontakt:</h4> 
+    <a href="mailto: michalbroucek@seznam.cz?subject=Vzkaz z: mbrouk.cz"><b>michalbroucek@seznam.cz</b></a>
+    <br/><br/><br/>
+    <h3>Děkuji za pochopení </h3>
+  </div>
+
+{% endblock %}
+

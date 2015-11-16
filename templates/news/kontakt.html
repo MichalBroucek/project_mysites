@@ -1,0 +1,21 @@
+
+{% extends "news/news.html" %}
+
+
+{% block maincontent %}
+
+  <div id="maincontenttext" class="maincontenttext" style="position: absolute; top: 1%; left: 3%; hight: 100%; width: 90%">
+
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'news/style.css' %}" />
+
+    <h2>Kdo bude mít zájem, může použít kontakty níže. Odpověď můžete očekávat do měsíce :-)</h2>
+
+    <h3>Mobil: +420 602 452073</h3>
+    <h3>Mail 1: <a href="mailto: michalbroucek@seznam.cz?subject=Vzkaz z: mbrouk.cz"><b>michalbroucek@seznam.cz</b></a></h3>
+    <h3>Mail 2: <a href="mailto: michalbroucek@gmail.com?subject=Vzkaz z: mbrouk.cz"><b>michalbroucek@gmail.com</b></a></h3>
+
+  </div>
+
+{% endblock %}
+

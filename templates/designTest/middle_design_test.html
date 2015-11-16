@@ -1,0 +1,51 @@
+
+{% extends "designTest/designTest.html" %}
+
+{% block centercontent %}
+  {% load staticfiles %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/middle_content_design.css' %}" />
+  
+  <!-- Left sidebar with links -->
+
+  <div id="leftsidebar" class="leftsidebar" style="position: relative; top: 0px; height: 100%; left: 0px; width: 199px;">
+   <img src="../../static/images/left_menu_long.jpg" style="position: relative; left: 0px; width: 199;"> 
+
+
+    {% block leftsidebar %}
+        {# <a href="{% url 'news.views.news' %}" class="menu">Novinky</a> </br></br></br> #}
+	<a href="{% url 'news:news' 0 %}" class="menu" style="position: absolute; top: 170px; left: 65px;">Novinky</a> </br></br></br>
+        <a href="{% url 'news.views.underConstruction' %}" class="menuNotActive" style="position: absolute; top: 225px; left: 65px;">Články&nbsp;&nbsp;</a> </br></br></br>
+        {# <a href="{% url 'news.views.underConstruction' %}" class="menuNotActive">Blog&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> </br></br></br> #}
+        <a href="{% url 'news.views.underConstruction' %}" class="menuNotActive" style="position: absolute; top: 275px; left: 65px;">Galerie&nbsp;&nbsp;</a> </br></br></br>
+        <a href="{% url 'news.views.underConstruction' %}" class="menuNotActive" style="position: absolute; top: 330px; left: 65px;">Projekty</a> </br></br></br>
+	<a href="{% url 'messages:messages' %}" class="menu" style="position: absolute; top: 385px; left: 65px;">Vzkazy&nbsp;&nbsp;&nbsp;</a> </br></br></br>
+
+    {% endblock %}
+  </div>
+
+  <!-- Main content -->
+  <div id="maincontent" class="centersidecontent" style="position: absolute; top: 0px; left: 199px; width: 870px; height: 100%;">
+    <div id="maincontenttext" class="maincontenttext" style="position: absolute; top: 1%; left: 1%; width: 98%; height: 100%;">
+      {% block maincontent %}
+        <h2>MAIN CONTENT</h2>
+      {% endblock %}
+    </div>
+  </div>
+
+
+  <!-- Right sidebar block -->
+ <div id="rightsidebar" class="rightsidebar" style="position: absolute; top: 0px; left: 1065px; width: 190px">
+
+   <img src="../../static/images/right_menu_5.jpg" style="position: relative; left: 0px; width: 199;"> 
+
+    {% block rightsidebar %}
+      <div id="pictureofday" class="pictureofday" style="position: absolute; top: 2%; left: 2%">
+        <a href="../underConstruction">Fotka dne, heslo dne ...</a>
+	{{ content }}
+      </div>
+    {% endblock %}
+   </div>
+
+
+{% endblock %}
+

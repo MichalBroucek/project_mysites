@@ -1,0 +1,54 @@
+
+{% extends "middle_content.html" %}
+
+
+{% block maincontent %}
+
+  {% load staticfiles %}
+  <link rel="stylesheet" type="text/css" href="{% static 'news/news_style.css' %}" />
+
+  <!-- Mezera leva+prava textu od okraje -->
+  <div id="left_space" style="position: relative; left: 5%; width: 90%;">
+
+  <br/>
+	<font size="5px">Seznam vsech novinek</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <font size="4px">Počet záznamů: {{ news_count }}</font>
+  <br/>
+  <br/>
+
+  {% if news_list %}
+      <ol>
+      {% for new in news_list %}
+	  <li>
+	  <a href="/newsFromList/{{ new.id }}">{{ new.title }}</a>
+	  </li>
+      {% endfor %}
+      </ol>
+  {% else %}
+      <p>Žádné novinky nejsou k dispozici.</p>
+  {% endif %}
+
+  </div>
+{% endblock %}
+
+{% block rightsidebar %}
+  <br/>
+  <div id="PictureOfDay" style="position: absolute; left: 10px; top: 20px;">
+    Fotka týdne, heslo týdne ... 
+    <br/><br/>
+
+    {% if pictureOfWeek %}
+      <img border="0" alt="" src="{{ pictureOfWeek.image.url }}" width="170px" style="border: 2px solid white; box-shadow: 0 0 2px rgba(0, 0, 0, 0.7);">
+      <br/>
+      <a href="{% url 'news:picture_of_week_detail' pictureOfWeek.id %}">{{ pictureOfWeek.title }}</a>
+      <div id="hesloTydne" style="position: absolute; left: 0px; top: 220px;">      
+        <font size="2px">Heslo týdne:</font>
+        <br>
+        {{ pictureOfWeek.text }}       
+      </div>
+    {% else %}
+      Žádný záznam pro foto týdne.
+    {% endif%}
+
+  </div>
+{% endblock %}

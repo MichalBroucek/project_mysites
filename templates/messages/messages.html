@@ -1,0 +1,49 @@
+
+{% extends "middle_content.html" %}
+
+{% block maincontent %}
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; Vzkazy (počet celkem: {{ count_messages }})&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; <a href="{% url 'messages:new_message' %}"> <b>Vložit nový vzkaz</b> </a> &nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/>
+
+{% if messages %}
+
+    {% for message in messages %}
+        <div id="jedna_zprava_ramecek" style="position: relative; border: 1px solid gray;">
+            <div id="mezera_od_ramecku" style="position: relative; left: 1%; width: 98%;">
+                <font size="5px" style="color: gray"> <b> {{ message.title }} </b> </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  	        <font size="2px">Datum:</font> {{ message.date }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <font size="2px">Autor:</font> <font style="color: gray"><b>{{ message.author }}</b></font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <font size="2px">Email:</font> <a href="">{{ message.mail }}</a> 
+                <br/>
+	        <br/>
+	        {{ message.text }}
+            </div> {# konec div mezery od ramecku #} 
+            <br/>
+        </div>  {# konec div ramecku #}
+        <br/><br/>
+    {% endfor %}
+
+{% else %}
+    <p>Žádné vzkazy nejsou k dispozici.</p>
+{% endif %}
+
+{% endblock %} {# end block maincontent #}
+
+
+{% block rightsidebar %}
+    <div id="rightPanelContent" style="position: absolute; left: 5%; top: 50px">
+
+    <h3>Historie: </h3>
+    
+    {% for message in message_history %}
+        {{ message.date }}<br/>
+        <font style="color: gray">{{ message.title }}</font>
+        <br/><br/>
+    {% endfor %}
+
+    </div>
+{% endblock %}
+
+

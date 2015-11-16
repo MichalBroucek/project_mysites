@@ -1,0 +1,138 @@
+
+{% extends "middle_content.html" %}
+
+
+{% block maincontent %}
+
+
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'news/news_style.css' %}" />
+
+<br/>
+
+        <font size="2px"><a href="{% url 'news:news' preview_start_id %}" title="10 předchozích novinek"><<</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+	<font size="4px">Aktuality</font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font size="4px">Počet záznamů: {{ news_count }}</font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="{% url 'news:newsList' %}">Seznam novinek</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2px"><a href="{% url 'news:news' next_start_id %}" title="10 následujících novinek">>></a></font>
+        
+<br/>
+<br/>
+
+{% if news_list %}
+    {% for new in news_list %}
+
+	<div id="jednotlive_novinky" style="position: relative; float: down"> 
+
+	<!-- Ramecek kolem jedne novinky -->
+        <div id="new_item" style="position: relative; border: 1px solid gray;">
+
+	  <!-- Mezera leva+prava textu od ramecku -->
+	  <div id="left_space" style="position: relative; left: 1%; width: 98%;">
+
+	    <br/>
+            &nbsp;&nbsp;&nbsp; Title:&nbsp;&nbsp; <font size="6px">{{ new.title }}</font>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date:&nbsp;&nbsp; <font size="4px">{{ new.date }}</font>
+	    <br/><br/>
+            {{ new.text }}
+        
+            <br/><br/>
+            <!-- Display links if they are available -->
+            {% if new.link1 %}
+              Odkaz 1:&nbsp;&nbsp; <a href="http://{{ new.link1 }}">{{ new.link1_name }}</a> </br> 
+            {% endif  %}
+            {% if new.link2 %}
+              Odkaz 2:&nbsp;&nbsp; <a href="http://{{ new.link2 }}">{{ new.link2_name }}</a> </br>
+            {% endif  %}
+            {% if new.link3 %}
+              Odkaz 3:&nbsp;&nbsp; <a href="http://{{ new.link3 }}">{{ new.link3_name }}</a> </br>
+            {% endif  %}
+            {% if new.link4 %} 
+              Odkaz 4:&nbsp;&nbsp; <a href="http://{{ new.link4 }}">{{ new.link4_name }}</a> </br>
+            {% endif  %}
+	    <br/>
+
+            <!-- Display pictures if they are available -->
+	    <div id="obrazky" style="position: relative; width: 100%; height: 315px">
+
+	      {% if new.image1 %}
+		<div id="obr1" style="position: absolute; left: 1%">  
+                  <img border="0" alt="" src="{{ new.image1.url }}" width="190" style="border: 2px solid white; box-shadow: 0 0 2px rgba(0, 0, 0, 0.7);">
+                  <br/>
+		  {{ new.image1_name }}
+		  <br/>
+                  <a href="news_obr1_detail/{{ new.id }}">Zvětšit obrázek</a>
+		</div>
+              {% endif %}
+
+              <!-- &nbsp;&nbsp;&nbsp;&nbsp; -->
+              {% if new.image2 %}
+		<div id="obr2" style="position: absolute; left: 26%;">
+                  <img border="0" alt="" src="{{ new.image2.url }}" width="190" style="border: 2px solid white; box-shadow: 0 0 2px rgba(0, 0, 0, 0.7);">
+                  <br/>
+		  {{ new.image2_name }}
+		  </br>
+                  <a href="news_obr2_detail/{{ new.id }}">Zvětšit Obrázek</a>
+		</div>
+              {% endif %}
+
+              <!-- &nbsp;&nbsp;&nbsp;&nbsp; -->
+              {% if new.image3 %}
+		<div id="obr3" style="position: absolute; left: 51%;">
+                  <img border="0" alt="" src="{{ new.image3.url }}" width="190" style="border: 2px solid white; box-shadow: 0 0 2px rgba(0, 0, 0, 0.7);">
+                  <br/>
+		  {{ new.image3_name }}
+		  <br/>
+                  <a href="news_obr3_detail/{{ new.id }}">Zvětšit Obrázek</a>
+		</div>
+              {% endif %}
+
+              <!-- &nbsp;&nbsp;&nbsp;&nbsp; -->
+              {% if new.image4 %}
+		<div id="obr4" style="position: absolute; left: 76%;">
+                  <img border="0" alt="" src="{{ new.image4.url }}" width="190" style="border: 2px solid white; box-shadow: 0 0 2px rgba(0, 0, 0, 0.7);">
+                  <br/>
+		  {{ new.image4_name }}
+		  <br/>
+                  <a href="news_obr4_detail/{{ new.id }}">Zvětšit Obrázek</a>
+		</div>
+              {% endif %}
+	  
+	    </div> <!-- Obrazky -->
+	   
+	    </div> <!-- Mezera -->
+
+	    </div> <!-- Ramecek -->
+
+	    <br/><br/>
+
+	    </div> <!-- Jednotlive novinky -->	
+
+    {% endfor %}
+
+
+{% else %}
+    <p>Žádné novinky nejsou k dispozici.</p>
+{% endif %}
+
+{% endblock %}
+
+
+{% block rightsidebar %}
+  <br/>
+  <div id="PictureOfDay" style="position: absolute; left: 10px; top: 20px;">
+    Fotka týdne, heslo týdne ... 
+    <br/><br/>
+
+    {% if pictureOfWeek %}
+      <img border="0" alt="" src="{{ pictureOfWeek.image.url }}" width="170px" style="border: 2px solid white; box-shadow: 0 0 2px rgba(0, 0, 0, 0.7);">
+      <br/>
+      <a href="{% url 'news:picture_of_week_detail' pictureOfWeek.id %}">{{ pictureOfWeek.title }}</a>
+      <div id="hesloTydne" style="position: absolute; left: 0px; top: 220px;">      
+        <font size="2px">Heslo týdne:</font>
+        <br>
+        {{ pictureOfWeek.text }}       
+      </div>
+    {% else %}
+      Žádný záznam pro foto týdne.
+    {% endif%}
+
+  </div>
+{% endblock %}

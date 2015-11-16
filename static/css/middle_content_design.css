@@ -1,0 +1,16 @@
+
+.leftsidebar {
+	/* background-image: URL("../images/left_menu_1_14.jpg"); */
+	background-repeat: repeat;
+	background-color: gray;	
+}
+
+.rightsidebar {
+	background-image: URL("../images/right_menu_5.jpg");
+	background-color: gray; 
+}
+
+.centersidecontent {
+	background-color: rgb(27,24,24); 
+}
+

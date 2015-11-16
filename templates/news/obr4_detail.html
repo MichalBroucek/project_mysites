@@ -1,0 +1,19 @@
+
+{% extends "news/news.html" %}
+
+{% block maincontent %}
+
+  {% load staticfiles %}
+  <link rel="stylesheet" type="text/css" href="{% static 'news/news_style.css' %}" />
+
+  <!-- Back to the news/ page -->
+  <div id="zpet" style="position: absolute; top: 0%; left: 0%;">
+    <a href="{% url 'news:news' start_id %}">&crarr; Zpět</a>
+  </div>
+
+  <div id=obr_detail style="position: absolute; top: 0%; left: 7%;">
+    <!--TODO move individual templates for image1-4 detail into one -> make it more general when have time -->
+    <img border="0" alt="" src="{{ new.image4.url }}" width="770px" hight="577px" style="border: 4px solid white; box-shadow: 0 0 2px rgba(0, 0, 0, 0.7);">
+  </div>
+
+{% endblock %}
