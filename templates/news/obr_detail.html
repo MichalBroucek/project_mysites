@@ -1,0 +1,23 @@
+
+{% extends "news/news.html" %}
+
+{% block maincontent %}
+
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'news/news_style.css' %}" />
+
+    <div id=obr_detail style="position: absolute; top: 0%; left: 2%;">
+
+    <!-- Back to the news/ page -->
+
+        <a href="{% url 'news:news' start_id %}">&#8617; Zpět</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="{% url 'news:obr_detail' start_id new.id previous_image %}">&#x27FB; Předchozí obr.</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="{% url 'news:obr_detail' start_id new.id next_image %}">Další obr. &#x27FC;</a>
+
+        <br/><br/>
+        <img border="0" alt="" src="{{ requested_image.url }}" width="800px" hight="600px" style="border: 4px solid white; box-shadow: 0 0 2px rgba(0, 0, 0, 0.7);">
+    </div>
+
+{% endblock %}
